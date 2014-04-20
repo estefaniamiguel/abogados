@@ -55,10 +55,11 @@ public class TestPermisoAbogado extends TestCase {
 	//Conocer todos los abogados que pueden acceder a un caso
 	public void testConocerAbogados() {
 		abogado.darPermisoLectura(abogadoRoberto, casoFraudeGilberto);
-		Set<Caso> abogados = casoFraudeGilberto.abogadosConPermisoLectura();
-		Set<Caso> abogadosEsperados = new HashSet<Caso>();
+		Set<Abogado> abogados = casoFraudeGilberto.abogadosConPermisoLectura();
+		Set<Abogado> abogadosEsperados = new HashSet<Abogado>();
+		abogadosEsperados.add(abogadoRoberto);
 		assertEquals(abogadosEsperados, abogados);
-		assertEquals(null, casoSucesionManolo.abogadosConPermisoLectura());
+		assertTrue(casoSucesionManolo.abogadosConPermisoLectura().isEmpty());
 	}
 
 	

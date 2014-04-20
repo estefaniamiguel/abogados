@@ -18,4 +18,8 @@ public class Caso {
 		abogado.quitarCasoConPermisoLectura(this);
 	}
 
+	public Set<Abogado> abogadosConPermisoLectura() {
+		return abogadosConLectura;
+	}
+
 }
