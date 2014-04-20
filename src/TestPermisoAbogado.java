@@ -1,3 +1,6 @@
+import java.util.HashSet;
+import java.util.Set;
+
 import junit.framework.TestCase;
 
 
@@ -32,5 +35,21 @@ public class TestPermisoAbogado extends TestCase {
 		assertTrue(abogadoRoberto.puedeLeerCaso(casoFraudeGilberto));
 	}
 	
+	public void testQuitarPermisoParaUnCaso() {
+		abogado.darPermisoLectura(abogadoRoberto, casoFraudeGilberto);
+		abogado.quitarPermisoLectura(abogadoRoberto, casoFraudeGilberto);
+		assertFalse(abogadoRoberto.puedeLeerCaso(casoSucesionManolo));
+		assertFalse(abogadoRoberto.puedeLeerCaso(casoFraudeGilberto));
+	}
+	
+	//Conocer todos los casos a los que puede acceder un abogado
+	public void testConocerCasos() {
+		abogado.darPermisoLecturaParaTodosLosCasosA(abogadoRoberto);
+		Set<Caso> casos = abogadoRoberto.casosAccesibles();
+		Set<Caso> casosEsperados = new HashSet<Caso>();
+		casosEsperados.add(casoSucesionManolo);
+		casosEsperados.add(casoFraudeGilberto);
+		assertEquals(casosEsperados, casos);
+	}
 	
 }
