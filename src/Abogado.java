@@ -6,6 +6,7 @@ public class Abogado {
 
 	private Set<Caso> casos = new HashSet<Caso>();
 	private Set<Caso> casosLectura = new HashSet<Caso>();
+	private Set<Caso> casosEdicion = new HashSet<Caso>();
 	public void darPermisoLecturaParaTodosLosCasosA(Abogado otroAbogado) {
 		otroAbogado.darPermisoLecturaParaLosCasos(casos);
 	}
@@ -46,6 +47,18 @@ public class Abogado {
 
 	public void leer(Caso caso) throws AccessDeniedException {
 		caso.leer(this);
+	}
+
+	public void darPermisoTotal(Abogado abogado, Caso caso) {
+		caso.darPermisoTotalPara(abogado, caso);
+	}
+
+	public void agregarCasoConPermisoEdicion(Caso caso) {
+		casosEdicion.add(caso);
+	}
+
+	public void editar(Caso caso) throws AccessDeniedException {
+		caso.editar(this);
 	}
 
 }

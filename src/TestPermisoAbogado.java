@@ -72,10 +72,12 @@ public class TestPermisoAbogado extends TestCase {
 	}
 	
 	public void testAutorizarAccesoLecturaConPermisoTotal() throws AccessDeniedException {
+		abogadoDuenioDeLosCasos.darPermisoTotal(abogado, casoFraudeGilberto);
+		abogado.leer(casoFraudeGilberto);
 	}
 	
 	public void testAutorizarAccesoLecturaSiendoDuenio() throws AccessDeniedException {
-
+		abogadoDuenioDeLosCasos.leer(casoFraudeGilberto);
 	}
 	
 	@Test(expected = AccessDeniedException.class)
@@ -85,18 +87,22 @@ public class TestPermisoAbogado extends TestCase {
 	
 	//Autorizar o rechazar el acceso total a un abogado sobre un caso
 	public void testAutorizarAccesoEscrituraConPermisoTotal() throws AccessDeniedException {
-		
+		abogadoDuenioDeLosCasos.darPermisoTotal(abogado, casoFraudeGilberto);
+		abogado.editar(casoFraudeGilberto);
 	}
 	
 	public void testAutorizarAccesoEscrituraSiendoDuenio() throws AccessDeniedException {
-		
+		abogadoDuenioDeLosCasos.editar(casoFraudeGilberto);
 	}
 	
 	@Test(expected = AccessDeniedException.class)
 	public void testRechazarAccesoEscrituraConPermisoLectura() throws AccessDeniedException {
+		abogado.editar(casoFraudeGilberto);
 	}
 	
 	@Test(expected = AccessDeniedException.class)
 	public void testRechazarAccesoEscrituraSinPermiso() throws AccessDeniedException {
+		abogadoDuenioDeLosCasos.darPermisoLectura(abogado, casoFraudeGilberto);
+		abogado.editar(casoFraudeGilberto);
 	}
 }
