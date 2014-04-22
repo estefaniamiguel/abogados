@@ -44,4 +44,8 @@ public class Abogado {
 		casosLectura.remove(caso);
 	}
 
+	public void leer(Caso caso) throws AccessDeniedException {
+		caso.leer(this);
+	}
+
 }

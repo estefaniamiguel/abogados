@@ -22,4 +22,9 @@ public class Caso {
 		return abogadosConLectura;
 	}
 
+	public void leer(Abogado abogado) throws AccessDeniedException {
+		if (!this.puedeSerLeidoPor(abogado))
+			throw new AccessDeniedException("No tiene permisos para leer el caso");
+	}
+
 }
