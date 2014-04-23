@@ -28,7 +28,7 @@ public class Caso {
 			throw new AccessDeniedException("No tiene permisos para leer el caso");
 	}
 
-	public void darPermisoTotalPara(Abogado abogado, Caso caso) {
+	public void darPermisoTotalPara(Abogado abogado) {
 		abogadosConLectura.add(abogado);
 		abogado.agregarCasoConPermisoLectura(this);
 		abogadosConEdicion.add(abogado);

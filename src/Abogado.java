@@ -14,9 +14,14 @@ public class Abogado {
 	private void darPermisoLecturaParaLosCasos(Set<Caso> losCasos) {
 		losCasos.iterator().forEachRemaining(caso -> caso.darPermisoLecturaPara(this));
 	}
+	
+	private void darPermisoTotalParaLosCasos(Set<Caso> losCasos) {
+		losCasos.iterator().forEachRemaining(caso -> caso.darPermisoTotalPara(this));
+	}
 
 	public void agregarCaso(Caso caso) {
 		casos.add(caso);
+		this.darPermisoTotalParaLosCasos(casos);
 	}
 
 	public boolean puedeLeerCaso(Caso caso) {
@@ -50,7 +55,7 @@ public class Abogado {
 	}
 
 	public void darPermisoTotal(Abogado abogado, Caso caso) {
-		caso.darPermisoTotalPara(abogado, caso);
+		caso.darPermisoTotalPara(abogado);
 	}
 
 	public void agregarCasoConPermisoEdicion(Caso caso) {
