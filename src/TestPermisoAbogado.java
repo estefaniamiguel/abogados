@@ -73,47 +73,47 @@ public class TestPermisoAbogado {
 
 	//Autorizar o rechazar el acceso de lectura a un abogado sobre un caso
 	@Test
-	public void testAutorizarAccesoLecturaConPermisoLectura() throws AccessDeniedException {
+	public void testAutorizarAccesoLecturaConPermisoLectura() {
 		abogadoDuenioDeLosCasos.darPermisoLectura(abogado, casoFraudeGilberto);
 		abogado.leer(casoFraudeGilberto);
 	}
 	
 	@Test
-	public void testAutorizarAccesoLecturaConPermisoTotal() throws AccessDeniedException {
+	public void testAutorizarAccesoLecturaConPermisoTotal() {
 		abogadoDuenioDeLosCasos.darPermisoTotal(abogado, casoFraudeGilberto);
 		abogado.leer(casoFraudeGilberto);
 	}
 	
 	@Test
-	public void testAutorizarAccesoLecturaSiendoDuenio() throws AccessDeniedException {
+	public void testAutorizarAccesoLecturaSiendoDuenio() {
 		abogadoDuenioDeLosCasos.leer(casoFraudeGilberto);
 	}
 	
-	@Test(expected = AccessDeniedException.class)
-	public void testRechazarAccesoLecturaSinPermiso() throws AccessDeniedException {
+	@Test(expected = AccesoDenegadoException.class)
+	public void testRechazarAccesoLecturaSinPermiso() {
 		abogado.leer(casoFraudeGilberto);
 	}
 	
 	//Autorizar o rechazar el acceso total a un abogado sobre un caso
 	@Test
-	public void testAutorizarAccesoEscrituraConPermisoTotal() throws AccessDeniedException {
+	public void testAutorizarAccesoEscrituraConPermisoTotal() {
 		abogadoDuenioDeLosCasos.darPermisoTotal(abogado, casoFraudeGilberto);
 		abogado.editar(casoFraudeGilberto);
 	}
 	
 	@Test
-	public void testAutorizarAccesoEscrituraSiendoDuenio() throws AccessDeniedException {
+	public void testAutorizarAccesoEscrituraSiendoDuenio() {
 		abogadoDuenioDeLosCasos.editar(casoFraudeGilberto);
 	}
 	
-	@Test(expected = AccessDeniedException.class)
-	public void testRechazarAccesoEscrituraConPermisoLectura() throws AccessDeniedException {
+	@Test(expected = AccesoDenegadoException.class)
+	public void testRechazarAccesoEscrituraConPermisoLectura() {
 		abogadoDuenioDeLosCasos.darPermisoLectura(abogado, casoFraudeGilberto);
 		abogado.editar(casoFraudeGilberto);
 	}
 	
-	@Test(expected = AccessDeniedException.class)
-	public void testRechazarAccesoEscrituraSinPermiso() throws AccessDeniedException {
+	@Test(expected = AccesoDenegadoException.class)
+	public void testRechazarAccesoEscrituraSinPermiso() {
 		abogado.editar(casoFraudeGilberto);
 	}
 }
