@@ -3,21 +3,20 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-
 public class Abogado {
 	private Map<Caso, Permiso> accesos = new HashMap<Caso, Permiso>();
 
 	public void darPermisoLecturaParaTodosLosCasosA(Abogado otroAbogado) {
 		otroAbogado.darPermisoLecturaParaLosCasos(casosPropios());
 	}
-	
+
 	public void darPermisoTotalParaTodosLosCasosA(Abogado otroAbogado) {
 		otroAbogado.darPermisoTotalParaLosCasos(casosPropios());
 	}
 
 	private Set<Caso> casosPropios() {
 		Set<Caso> casos = new HashSet<Caso>();
-		for(Caso caso : accesos.keySet()) {
+		for (Caso caso : accesos.keySet()) {
 			if (accesos.get(caso).esDuenio()) {
 				casos.add(caso);
 			}
@@ -26,18 +25,20 @@ public class Abogado {
 	}
 
 	private void darPermisoLecturaParaLosCasos(Set<Caso> losCasos) {
-		losCasos.iterator().forEachRemaining(caso -> caso.darPermisoLecturaPara(this));
+		losCasos.iterator().forEachRemaining(
+				caso -> caso.darPermisoLecturaPara(this));
 	}
-	
+
 	private void darPermisoTotalParaLosCasos(Set<Caso> losCasos) {
-		losCasos.iterator().forEachRemaining(caso -> caso.darPermisoTotalPara(this));
+		losCasos.iterator().forEachRemaining(
+				caso -> caso.darPermisoTotalPara(this));
 	}
 
 	public void agregarCaso(Caso caso) {
 		accesos.put(caso, new PermisoPropietario());
 		caso.darPermisoPropietario(this);
 	}
-	
+
 	private boolean puedeDarPermiso(Caso caso) {
 		if (accesos.get(caso) != null)
 			return accesos.get(caso).puedeDarPermiso();
@@ -48,28 +49,29 @@ public class Abogado {
 		return caso.puedeSerLeidoPor(this);
 	}
 
-	public void darPermisoLectura(Abogado abogado,
-			Caso caso) {
+	public void darPermisoLectura(Abogado abogado, Caso caso) {
 		if (this.puedeDarPermiso(caso))
 			caso.darPermisoLecturaPara(abogado);
 		else
-			throw new AccesoDenegadoException("Debe ser propietario del caso para dar permisos");
+			throw new AccesoDenegadoException(
+					"Debe ser propietario del caso para dar permisos");
 	}
 
-	public void quitarPermisoLectura(Abogado abogado,
-			Caso caso) {
+	public void quitarPermisoLectura(Abogado abogado, Caso caso) {
 		if (this.puedeDarPermiso(caso))
 			caso.quitarPermisoLecturaPara(abogado);
 		else
-			throw new AccesoDenegadoException("Debe ser propietario del caso para dar permisos");
+			throw new AccesoDenegadoException(
+					"Debe ser propietario del caso para dar permisos");
 	}
 
 	public Set<Caso> casosAccesibles() {
 		Set<Caso> casos = new HashSet<Caso>();
-		for(Caso caso : accesos.keySet()) {
-			if(this.puedeLeerCaso(caso))
-			casos.add(caso);
-		};
+		for (Caso caso : accesos.keySet()) {
+			if (this.puedeLeerCaso(caso))
+				casos.add(caso);
+		}
+		;
 		return casos;
 	}
 
@@ -89,7 +91,8 @@ public class Abogado {
 		if (this.puedeDarPermiso(caso))
 			caso.darPermisoTotalPara(abogado);
 		else
-			throw new AccesoDenegadoException("Debe ser propietario del caso para dar permisos");
+			throw new AccesoDenegadoException(
+					"Debe ser propietario del caso para dar permisos");
 	}
 
 	public void agregarCasoConPermisoTotal(Caso caso) {

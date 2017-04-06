@@ -1,7 +1,6 @@
-
 public class PermisoPropietario extends Permiso {
 	public boolean puedeLeer() {
-		return true;		
+		return true;
 	}
 
 	public boolean puedeEditar() {
@@ -11,7 +10,7 @@ public class PermisoPropietario extends Permiso {
 	public boolean esDuenio() {
 		return true;
 	}
-	
+
 	public boolean puedeDarPermiso() {
 		return true;
 	}

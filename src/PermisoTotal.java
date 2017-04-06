@@ -1,7 +1,6 @@
-
 public class PermisoTotal extends Permiso {
 	public boolean puedeLeer() {
-		return true;		
+		return true;
 	}
 
 	public boolean puedeEditar() {

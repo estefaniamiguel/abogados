@@ -1,8 +1,7 @@
-
 public class Permiso {
 
 	public boolean puedeLeer() {
-		return false;		
+		return false;
 	}
 
 	public boolean puedeEditar() {
